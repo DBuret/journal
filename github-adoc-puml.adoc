@@ -1,0 +1,69 @@
+= Using plantuml in AsciiDoc on GitHub
+:author: David Buret
+:source-highlighter: pygments
+:pygments-style: github
+:icons: font
+:sectnums:
+:toclevels: 4
+:toc:
+:imagesdir: images/
+:toc-title: Sommaire
+:gitplant: http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/DBuret/journal/master/
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+== introduction
+
+I'm currently moving to asciidoc and plantuml to write docs.
+Github asciidoc parsing does not understand plantuml.
+
+WARNING: AsciiDoc on GitHub currently needs some tricks. See https://gist.github.com/dcode/0cfbf2699a1fe9b46ff04c41721dda74[GitHub Flavored Asciidoc (GFA)] for Tips.
+
+== solution
+
+Use plantuml online server to parse the plantuml file on github, and use its full url in github asciidoc files
+ 
+.PlantUML proxy syntax
+ http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/DBuret/journal/master/test.puml
+
+.AsciiDoc syntax
+ image::http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/DBuret/journal/master/test.puml[test]
+
+This syntax is too long, let's use an asciidoc variable _gitplant_
+
+Easy way to display plantuml in asciidoc on github
+
+.In the ASciiDoc header
+ :gitplant: http://www.plantuml.com/plantuml/proxy?src=https://raw.githubusercontent.com/DBuret/journal/master/
+
+.In your document
+ image::{gitplant}/test.puml[test]
+
+.Result
+image::{gitplant}/test.puml[PlantUML Image]
+
+TIP: Purge an image from GitHub cache with: `curl -X PURGE https://camo.githubusercontent.com/xxxxxxxxxxx`
+
+== Styling PlantUML
+
+If you want to use a styling shared by several plantUML diagrams, you can _include_ a file from an HTTP repository.
+
+I'm using the following:
+
+ !includeurl  https://raw.githubusercontent.com/DBuret/journal/master/plantuml.cfg
+
+All my _skinparam_, _include_ of sprites, and so on are stored in this file.
+So my diagrams now contain only elements declaration and links.
+
+* link:test.puml[Source of the above diagram]
+* link:plantuml.cfg[the 'styling' include file]
+
+
+
+
+
