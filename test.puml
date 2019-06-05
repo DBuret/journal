@@ -1,6 +1,6 @@
 @startuml
 
-!includeurl  https://raw.githubusercontent.com/DBuret/myjournal/master/plantuml.cfg
+!includeurl  https://raw.githubusercontent.com/DBuret/journal/master/plantuml.cfg
 
 rectangle DMZ << dmz >> {
     rectangle "<$reverse_proxy>\nReverse Proxy\nIPS/IDS" << serveur >> as ReverseProxy
