@@ -1,0 +1,8 @@
+[cols="1,4,4,2,6"]
+|===
+| # | source | cible | proto | remarque
+
+| 1 | user | f5 | https | 
+| 2 | f5 | web service | https | glop
+
+|===
