@@ -22,13 +22,9 @@ Hi there!
 
 *	link:github-adoc-puml.adoc[my tests]
 
-== Asciidoc, plantuml & github
+== Asciidoc, plantuml & Gitlab
 
 You can check https://gitlab.com/dburet/journal/tree/master[my repo on gitlab] for more informations.
 
-== Plantuml
-
-[plantuml]
-----
-include::small.puml[]
-----
+image::https://about.gitlab.com/images/press/logo/png/gitlab-icon-rgb.png
+image::https://avatars1.githubusercontent.com/u/3137042?s=200&v=4
