@@ -1,0 +1,81 @@
+@startuml
+scale 0.9
+skinparam defaultFontName Calibri
+!include <office/Concepts/firewall>
+!include <office/Servers/server_generic>
+!include <office/Servers/server_farm>
+!include <office/Servers/cluster_server>
+!include <cloudinsight/docker>
+!include <office/Servers/reverse_proxy>
+!include <office/Users/users>
+!include <office/Clouds/cloud>
+!include <office/Servers/database_server>
+!include <office/Concepts/globe_internet>
+!include <office/Databases/database_availability_group>
+!include <office/Servers/web_server>
+!include <office/Users/administrator>
+!include <office/Servers/file_server>
+
+hide stereotype
+
+skinparam {
+    ArrowColor<< https >> Red
+    ArrowColor<< http >> Green
+    ArrowColor<< ssh >> Purple
+    ArrowColor<< nfs >> DarkOrange
+    ArrowColor<< jdbc >> Blue
+    ArrowColor<< flow >> Black
+    DefaultTextAlignment center
+    BackgroundColor White
+'   shadowing false
+    RoundCorner 10
+    RoundCorner<< flat >> 50
+    dpi 300
+}
+
+skinparam rectangle {
+    BackgroundColor transparent
+    BorderColor #cccccc
+
+    'GROUPE
+    BorderColor<< groupe >> #888888
+    shadowing<< groupe >> false
+    BorderStyle<< groupe >> dashed
+    BorderTickness<< groupe >> 10
+
+    ' ~bug
+    TextAlignment<< groupe >> left 
+
+    ' DMZ
+    BorderColor<< dmz >> #999999 
+
+    'FLAT
+    BorderColor<< flat >> transparent
+    shadowing<< flat >> false
+
+    'FW
+    BorderColor<< fw >> chocolate
+}
+
+rectangle "Servers LAN"  << dmz >>  as lan {
+    rectangle "<$web_server>\nApplication" as App
+    rectangle "data" << groupe >> as data {
+        rectangle "<$database_server>\nRedis"  as redis
+        rectangle "<$server_farm>\nhadoop"  as hpc
+        rectangle "<$database_availability_group>\nDatabase"  as db
+        rectangle "<$file_server>\nNAS"  as nas
+    }
+}
+
+
+
+'user flow'
+
+'app flows'
+App --> db << jdbc >> : 4 
+App --> hpc << flow >> : 6
+App --> redis << flow >> : 5
+App --> nas << nfs >>  : 7
+
+
+@enduml
