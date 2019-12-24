@@ -1,0 +1,34 @@
+= my github journal
+:author: David Buret
+:source-highlighter: highlightjs
+:sectnums:
+:toclevels: 4
+:toc:
+:imagesdir: images/
+:toc-title: Sommaire
+:gitplant: http://www.plantuml.com/plantuml/proxy?src=https://gitlab.com/dburet/journal/raw/master
+ifdef::env-gitlab[]
+:areweingitlab: yes❗➡ℹ💡☠⚠
+endif::[]
+ifndef::env-gitlab[]
+:plantuml-server-url: http://192.168.1.49:23318
+endif::[]
+
+== Introduction
+
+Hi there!
+
+== Asciidoc, plantuml & github
+
+*	link:github-adoc-puml.adoc[my tests]
+
+== Asciidoc, plantuml & github
+
+You can check https://gitlab.com/dburet/journal/tree/master[my repo on gitlab] for more informations.
+
+== Plantuml
+
+[plantuml]
+----
+include::small.puml[]
+----
